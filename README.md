@@ -215,10 +215,6 @@ We welcome contributions! Please see our contributing guidelines and feel free t
 - Submit pull requests
 - Improve documentation
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## 🙏 Acknowledgments
 
 - **FaceForensics++ Dataset**: For providing comprehensive training data
