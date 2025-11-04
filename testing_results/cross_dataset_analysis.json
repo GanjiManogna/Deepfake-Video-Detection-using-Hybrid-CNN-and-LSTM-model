@@ -1,0 +1,9 @@
+{
+  "analysis": "Cross-dataset validation requires separate training runs",
+  "recommendations": [
+    "Train on FaceForensics++ and test on DFDC",
+    "Train on DFDC and test on FaceForensics++",
+    "Use combined training for better generalization",
+    "Implement domain adaptation techniques"
+  ]
+}

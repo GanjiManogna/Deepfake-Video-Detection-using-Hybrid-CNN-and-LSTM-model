@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deepfake Detector</title>
+    <style>
+      :root {
+        --bg:#0b0b0f; --panel:#0f1115; --panel2:#111318; --border:#22242b;
+        --text:#e5e7eb; --muted:#a1a1aa; --accent:#7c5cff; --accent-2:#6d28d9;
+        --good:#16351a; --goodText:#b7f5c4; --bad:#3a1014; --badText:#ffc9c9;
+      }
+      *{box-sizing:border-box}
+      body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.6}
+      .container{max-width:980px;margin:0 auto;padding:36px 22px}
+      .hero{margin:6px 0 16px;font-size:34px;letter-spacing:.2px;font-weight:700}
+      .sub{color:var(--muted);margin-bottom:24px;font-size:15px}
+      .card{padding:32px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,var(--panel),var(--panel2));box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+      .btn{display:inline-block;padding:16px 32px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;transition:all 0.3s ease}
+      .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 30px rgba(124,92,255,.4);width:100%;text-align:center;display:block}
+      .btn-primary:hover{filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 12px 35px rgba(124,92,255,.5)}
+      ul{margin-top:10px;padding-left:20px;color:var(--muted)}
+      li{margin:8px 0;line-height:1.6}
+      .badge{display:inline-block;padding:6px 12px;border-radius:20px;background:#1e293b;color:#9aa7c7;font-size:13px;margin-right:8px;margin-top:8px;border:1px solid var(--border);transition:all 0.2s ease}
+      .badge:hover{background:#2d3748;transform:translateY(-1px)}
+      h3{margin-top:0;margin-bottom:16px;font-size:22px;font-weight:700}
+      
+      /* Comparison Section Styles */
+      .comparison-section{margin-top:32px;padding:32px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,var(--panel),var(--panel2));box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+      .comparison-title{font-size:24px;font-weight:700;margin-bottom:20px;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      .models-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+      .model-card{border:2px solid var(--border);border-radius:12px;padding:20px;background:var(--panel2);transition:all 0.3s ease;position:relative;overflow:hidden}
+      .model-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:scaleX(0);transition:transform 0.3s ease}
+      .model-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 20px rgba(124,92,255,.2)}
+      .model-card:hover::before{transform:scaleX(1)}
+      .model-name{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--text)}
+      .metric-bar{background:var(--border);border-radius:8px;height:8px;margin:8px 0;overflow:hidden;position:relative}
+      .metric-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:8px;transition:width 1s ease;position:relative}
+      .metric-fill::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 2s infinite}
+      @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+      .metric-label{font-size:12px;color:var(--muted);margin-bottom:4px;display:flex;justify-content:space-between}
+      .metric-value{font-size:16px;font-weight:700;color:var(--accent);margin-top:4px}
+      .accuracy-highlight{background:linear-gradient(135deg,var(--good),var(--goodText));color:var(--bg);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700}
+      .stats-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
+      .stat-item{text-align:center;padding:16px;background:var(--panel);border-radius:10px;border:1px solid var(--border)}
+      .stat-number{font-size:28px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      .stat-label{font-size:12px;color:var(--muted);margin-top:4px}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="hero">Deepfake Detector</h1>
+      <p class="sub">Advanced deepfake detection using multi-modal analysis combining spatial features (CNN), temporal patterns (LSTM), and physiological signals (blink detection, optical flow, heart rate estimation). Robust detection across various video conditions and compression levels.</p>
+      
+      <div class="card" style="margin-bottom:24px">
+        <h3 style="margin-top:0">How it works</h3>
+        <ul>
+          <li><strong>Spatial Analysis:</strong> ResNeXt CNN extracts visual features from facial regions.</li>
+          <li><strong>Temporal Analysis:</strong> LSTM captures inconsistencies across video frames.</li>
+          <li><strong>Physiological Analysis:</strong> Detects blink patterns, optical flow, and heart rate signals.</li>
+          <li><strong>Multi-Modal Fusion:</strong> Combines all features for robust deepfake detection.</li>
+          <li><strong>Cross-Dataset Validation:</strong> Trained on FaceForensics++ and validated on DFDC.</li>
+            </ul>
+        
+        <div style="margin-top:20px">
+          <span class="badge">ResNeXt</span>
+          <span class="badge">LSTM</span>
+          <span class="badge">Blink Detection</span>
+          <span class="badge">Optical Flow</span>
+          <span class="badge">rPPG</span>
+          <span class="badge">Multi-Modal</span>
+        </div>
+        
+        <a class="btn btn-primary" href="/detect" style="margin-top:28px">DETECT DEEPFAKES</a>
+      </div>
+
+      <!-- Comparison Section -->
+      <div class="comparison-section">
+        <h2 class="comparison-title">📊 Model Performance Comparison</h2>
+        <p style="color:var(--muted);margin-bottom:24px">Live performance metrics from actual predictions. Statistics update automatically after each video analysis with ground truth.</p>
+        
+        <div class="models-grid">
+          <!-- CNN-Only Model -->
+          <div class="model-card">
+            <div class="model-name">🖼️ CNN-Only</div>
+            <div class="metric-label">
+              <span>Accuracy</span>
+              <span id="cnn-accuracy">0.0%</span>
+            </div>
+            <div class="metric-bar">
+              <div class="metric-fill" id="cnn-bar" style="width:0%"></div>
+            </div>
+            <div class="metric-label">
+              <span>Test Samples</span>
+              <span id="cnn-samples">0 videos</span>
+            </div>
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+              <div style="font-size:12px;color:var(--muted)">Best at: Spatial artifacts detection</div>
+            </div>
+          </div>
+
+          <!-- LSTM-Only Model -->
+          <div class="model-card">
+            <div class="model-name">🔄 LSTM-Only</div>
+            <div class="metric-label">
+              <span>Accuracy</span>
+              <span id="lstm-accuracy">0.0%</span>
+            </div>
+            <div class="metric-bar">
+              <div class="metric-fill" id="lstm-bar" style="width:0%"></div>
+            </div>
+            <div class="metric-label">
+              <span>Test Samples</span>
+              <span id="lstm-samples">0 videos</span>
+            </div>
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+              <div style="font-size:12px;color:var(--muted)">Best at: Temporal inconsistencies</div>
+            </div>
+          </div>
+
+          <!-- Hybrid Model -->
+          <div class="model-card">
+            <div class="model-name">🤖 Hybrid CNN+LSTM</div>
+            <div class="metric-label">
+              <span>Accuracy</span>
+              <span id="hybrid-accuracy">0.0%</span>
+            </div>
+            <div class="metric-bar">
+              <div class="metric-fill" id="hybrid-bar" style="width:0%"></div>
+            </div>
+            <div class="metric-label">
+              <span>Test Samples</span>
+              <span id="hybrid-samples">0 videos</span>
+            </div>
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+              <div style="font-size:12px;color:var(--muted)">Best at: Comprehensive analysis</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="stats-summary">
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Models Evaluated</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="total-videos">0</div>
+            <div class="stat-label">Videos Analyzed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="best-performance">0.0%</div>
+            <div class="stat-label">Best Performance</div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;padding:16px;background:var(--panel);border-radius:10px;border-left:4px solid var(--accent)">
+          <div style="font-size:14px;color:var(--muted);line-height:1.8">
+            <strong style="color:var(--text)">💡 Key Insights:</strong> <span id="insights-text">Analyze videos with ground truth to see real-time performance metrics. The Hybrid model combines both spatial (CNN) and temporal (LSTM) features for comprehensive deepfake detection.</span>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        async function loadPerformanceStats() {
+          try {
+            const res = await fetch('/performance/stats');
+            const data = await res.json();
+            
+            // Update CNN-Only
+            const cnnAcc = data.models.cnn_only.accuracy.toFixed(1);
+            const cnnTotal = data.models.cnn_only.total;
+            document.getElementById('cnn-accuracy').textContent = cnnAcc + '%';
+            document.getElementById('cnn-bar').style.width = cnnAcc + '%';
+            document.getElementById('cnn-samples').textContent = cnnTotal + (cnnTotal === 1 ? ' video' : ' videos');
+            
+            // Update LSTM-Only
+            const lstmAcc = data.models.lstm_only.accuracy.toFixed(1);
+            const lstmTotal = data.models.lstm_only.total;
+            document.getElementById('lstm-accuracy').textContent = lstmAcc + '%';
+            document.getElementById('lstm-bar').style.width = lstmAcc + '%';
+            document.getElementById('lstm-samples').textContent = lstmTotal + (lstmTotal === 1 ? ' video' : ' videos');
+            
+            // Update Hybrid
+            const hybridAcc = data.models.hybrid.accuracy.toFixed(1);
+            const hybridTotal = data.models.hybrid.total;
+            document.getElementById('hybrid-accuracy').textContent = hybridAcc + '%';
+            document.getElementById('hybrid-bar').style.width = hybridAcc + '%';
+            document.getElementById('hybrid-samples').textContent = hybridTotal + (hybridTotal === 1 ? ' video' : ' videos');
+            
+            // Update summary stats
+            const totalVideos = data.total_videos;
+            const bestAcc = data.best_accuracy.toFixed(1);
+            document.getElementById('total-videos').textContent = totalVideos;
+            document.getElementById('best-performance').textContent = bestAcc + '%';
+            
+            // Update insights
+            if (totalVideos > 0) {
+              const bestModel = data.best_model === 'cnn_only' ? 'CNN-Only' : 
+                               data.best_model === 'lstm_only' ? 'LSTM-Only' : 'Hybrid CNN+LSTM';
+              const insights = `Based on ${totalVideos} analyzed video${totalVideos === 1 ? '' : 's'}, the ${bestModel} model achieved the highest accuracy (${bestAcc}%). ` +
+                             (data.best_model === 'hybrid' ? 
+                               'The Hybrid model demonstrates superior performance by combining spatial and temporal features.' :
+                               'The Hybrid model combines both spatial (CNN) and temporal (LSTM) features for comprehensive detection across diverse video conditions.');
+              document.getElementById('insights-text').textContent = insights;
+            }
+          } catch (e) {
+            console.error('Error loading performance stats:', e);
+          }
+        }
+        
+        // Load stats on page load
+        loadPerformanceStats();
+        
+        // Refresh stats every 5 seconds (in case user has another tab open analyzing videos)
+        setInterval(loadPerformanceStats, 5000);
+      </script>
+    </div>
+  </body>
+  </html>

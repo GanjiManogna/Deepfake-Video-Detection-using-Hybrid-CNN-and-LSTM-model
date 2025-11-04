@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluation Metrics</title>
+    <style>
+      :root{--bg:#0b0b0f;--panel:#0f1115;--panel2:#111318;--border:#22242b;--text:#e5e7eb;--muted:#a1a1aa;--accent:#7c5cff}
+      body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--text)}
+      .wrap{max-width:980px;margin:0 auto;padding:36px 22px}
+      .card{padding:18px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,var(--panel),var(--panel2))}
+      button{padding:10px 16px;background:var(--accent);color:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:700;box-shadow:0 10px 20px rgba(124,92,255,.25)}
+      table{width:100%;border-collapse:collapse;margin-top:14px}
+      th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+      a{color:var(--muted);text-decoration:none}
+      .row{display:flex;gap:12px;align-items:center}
+      input{background:#0f1115;color:var(--text);border:1px solid var(--border);padding:8px 10px;border-radius:10px;width:120px}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Evaluation Metrics</h1>
+      <div class="card" style="margin-bottom:16px">
+        <h3>Latest Video Metrics</h3>
+        <div id="latest" style="margin-top:10px;color:var(--muted)">Run an analysis with a Ground Truth selected to populate this.</div>
+      </div>
+      <div class="card">
+        <h3>Performance Analysis</h3>
+        <p style="color:var(--muted);margin-bottom:16px">
+          These metrics evaluate our deepfake detection model's performance across different datasets.
+          Higher values indicate better performance.
+        </p>
+        <div class="row">
+          <label for="limit">Limit videos</label>
+          <input type="number" id="limit" value="200" min="10" step="10" />
+          <button id="run">Run Evaluation</button>
+        </div>
+        <div id="out" style="margin-top:14px"></div>
+      </div>
+      <p style="margin-top:14px"><a href="/detect">← Back to Detection</a></p>
+    </div>
+    <script>
+      const latest = document.getElementById('latest');
+      const btn = document.getElementById('run');
+      const out = document.getElementById('out');
+
+      async function loadLatest(){
+        try{
+          const r = await fetch('/metrics/latest');
+          const j = await r.json();
+          if(j.error){ latest.textContent = j.error; return; }
+          function block(name, m){
+            if(!m) return '';
+            return `<tr><th>${name}</th><td>${(m.accuracy||0).toFixed(2)}</td><td>${(m.precision||0).toFixed(2)}</td><td>${(m.recall||0).toFixed(2)}</td><td>${(m.f1||0).toFixed(2)}</td><td>${m.tp}/${m.fp}/${m.tn}/${m.fn}</td></tr>`;
+          }
+          latest.innerHTML = `
+            <div style="margin-bottom:8px">File: <strong>${j.filename||'—'}</strong> • Ground Truth: <strong>${j.ground_truth||'—'}</strong></div>
+            <table>
+              <tr><th>Model</th><th>Acc</th><th>Prec</th><th>Rec</th><th>F1</th><th>TP/FP/TN/FN</th></tr>
+              ${block('CNN‑Only', j.cnn_only)}
+              ${block('LSTM‑Only', j.lstm_only)}
+              ${block('Hybrid', j.hybrid)}
+            </table>`;
+        }catch(e){ latest.textContent = 'Error loading latest metrics'; }
+      }
+      loadLatest();
+      btn.addEventListener('click', async () => {
+        out.innerHTML = 'Running...';
+        const limit = document.getElementById('limit').value || 200;
+        const res = await fetch(`/metrics/run?mode=latest&limit=${encodeURIComponent(limit)}`);
+        const j = await res.json();
+        if (j.error) { out.textContent = j.error; return; }
+        const cm = j.confusion_matrix || [[0,0],[0,0]];
+        out.innerHTML = `
+          <h3>📊 Performance Metrics</h3>
+          <table>
+            <tr><th>Metric</th><th>Value</th><th>Explanation</th></tr>
+            <tr><th>Count</th><td>${j.count}</td><td>Total videos evaluated</td></tr>
+            <tr><th>Accuracy</th><td>${(j.accuracy*100).toFixed(2)}%</td><td>Overall prediction correctness</td></tr>
+            <tr><th>Precision</th><td>${j.precision.toFixed(3)}</td><td>Of predicted fakes, how many are actually fake</td></tr>
+            <tr><th>Recall</th><td>${j.recall.toFixed(3)}</td><td>Of actual fakes, how many were detected</td></tr>
+            <tr><th>F1-score</th><td>${j.f1.toFixed(3)}</td><td>Balanced measure of precision and recall</td></tr>
+          </table>
+          
+          <h3 style="margin-top:20px">🔍 Confusion Matrix</h3>
+          <p style="color:var(--muted);font-size:14px;margin-bottom:12px">
+            Shows actual vs predicted classifications. Diagonal values (green) are correct predictions.
+          </p>
+          <table style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+            <tr style="background:var(--panel2)"><th></th><th>Predicted Real</th><th>Predicted Fake</th></tr>
+            <tr><th style="background:var(--panel2)">Actual Real</th><td style="background:#16351a;color:#b7f5c4">${cm[0][0]}</td><td style="background:#3a1014;color:#ffc9c9">${cm[0][1]}</td></tr>
+            <tr><th style="background:var(--panel2)">Actual Fake</th><td style="background:#3a1014;color:#ffc9c9">${cm[1][0]}</td><td style="background:#16351a;color:#b7f5c4">${cm[1][1]}</td></tr>
+          </table>
+          
+          <div style="margin-top:16px;padding:12px;background:var(--panel2);border-radius:8px;border-left:4px solid var(--accent)">
+            <strong>💡 Interpretation:</strong><br>
+            <span style="color:#b7f5c4">Green cells:</span> Correct predictions<br>
+            <span style="color:#ffc9c9">Red cells:</span> Incorrect predictions<br>
+            <strong>Accuracy:</strong> ${(j.accuracy*100).toFixed(1)}% of all predictions are correct
+          </div>
+        `;
+      });
+    </script>
+  </body>
+  </html>
+
+

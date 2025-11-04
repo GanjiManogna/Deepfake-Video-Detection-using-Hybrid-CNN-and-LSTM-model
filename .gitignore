@@ -1,0 +1,106 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Model Checkpoints (keep structure, but ignore large files)
+saved_models/*.pth
+saved_models/*.pt
+!saved_models/.gitkeep
+
+# Training Results (keep JSON, ignore large files)
+training_results/*.json
+training_results/*.png
+!training_results/.gitkeep
+
+# Data (exclude large datasets)
+data/faceforensics_data/**/*.mp4
+data/dfdc_processed/**/*.mp4
+preprocessing/frames/**/*.jpg
+preprocessing/faces/**/*.jpg
+preprocessing/optical_flow/**/*.jpg
+preprocessing/dfdc_faces/**/*.jpg
+preprocessing/dfdc_frames/**/*.jpg
+preprocessing/dfdc_optical_flow/**/*.jpg
+
+# Testing Data (keep structure)
+testing_data/**/*.mp4
+testing_data/**/*.avi
+!testing_data/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+*.swp
+
+# PowerPoint (large files)
+*.pptx
+*.pptm
+
+# Images (keep only essential)
+*.png
+*.jpg
+*.jpeg
+!class_distribution.png
+!testing_results/model_comparison.png
+
+# Python cache
+*.pyc
+__pycache__/
+
+# Model training artifacts
+checkpoints/
+*.ckpt
+wandb/
+
+# Large JSON files
+*.json.bak
+

@@ -1,0 +1,305 @@
+{
+  "github": [
+    {
+      "video": "000.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9958459734916687,
+      "processing_time": 33.37392020225525,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "000_003.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9998898506164551,
+      "processing_time": 31.52980399131775,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01_02__outside_talking_still_laughing__YVGY8LOK.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9466049671173096,
+      "processing_time": 50.52000641822815,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__exit_phone_room.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9986453652381897,
+      "processing_time": 45.388790130615234,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__hugging_happy.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.8195837736129761,
+      "processing_time": 43.25802159309387,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__kitchen_still.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.999610960483551,
+      "processing_time": 55.63351535797119,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "03_07__walk_down_hall_angry__IFSURI9X.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.998572587966919,
+      "processing_time": 44.222708225250244,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "1.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9879146814346313,
+      "processing_time": 26.087541580200195,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "2.mp4",
+      "prediction": "REAL",
+      "confidence": 0.5175458788871765,
+      "processing_time": 26.937622547149658,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "3.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.8020595908164978,
+      "processing_time": 33.008262157440186,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "4.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9862244129180908,
+      "processing_time": 49.62189602851868,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    }
+  ],
+  "improved": [
+    {
+      "video": "000.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9958459734916687,
+      "processing_time": 31.035417556762695,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "000_003.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9998898506164551,
+      "processing_time": 29.306676149368286,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01_02__outside_talking_still_laughing__YVGY8LOK.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9466049671173096,
+      "processing_time": 50.76775908470154,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__exit_phone_room.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9986453652381897,
+      "processing_time": 43.43654751777649,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__hugging_happy.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.8195837736129761,
+      "processing_time": 42.585307359695435,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__kitchen_still.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.999610960483551,
+      "processing_time": 52.78153085708618,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "03_07__walk_down_hall_angry__IFSURI9X.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.998572587966919,
+      "processing_time": 43.71442770957947,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "1.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9879146814346313,
+      "processing_time": 26.35669207572937,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "2.mp4",
+      "prediction": "REAL",
+      "confidence": 0.5175458788871765,
+      "processing_time": 25.31995677947998,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "3.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9982908368110657,
+      "processing_time": 32.37698793411255,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "4.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9862244129180908,
+      "processing_time": 48.21516704559326,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    }
+  ],
+  "multimodal": [
+    {
+      "video": "000.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9958459734916687,
+      "processing_time": 30.39908742904663,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "000_003.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9998898506164551,
+      "processing_time": 30.19603157043457,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01_02__outside_talking_still_laughing__YVGY8LOK.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9466049671173096,
+      "processing_time": 50.04837894439697,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__exit_phone_room.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9986453652381897,
+      "processing_time": 43.186163663864136,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__hugging_happy.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.8195837736129761,
+      "processing_time": 43.12372922897339,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "01__kitchen_still.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.999610960483551,
+      "processing_time": 51.429771423339844,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "03_07__walk_down_hall_angry__IFSURI9X.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.998572587966919,
+      "processing_time": 48.82866549491882,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "1.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9879146814346313,
+      "processing_time": 24.37406277656555,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "2.mp4",
+      "prediction": "REAL",
+      "confidence": 0.5175458788871765,
+      "processing_time": 24.208870887756348,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "3.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.8020595908164978,
+      "processing_time": 29.96974754333496,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    },
+    {
+      "video": "4.mp4",
+      "prediction": "FAKE",
+      "confidence": 0.9862244129180908,
+      "processing_time": 42.181692361831665,
+      "frames_processed": 100,
+      "model_type": "GitHub 97% Accuracy ResNeXt+LSTM",
+      "error": null
+    }
+  ]
+}

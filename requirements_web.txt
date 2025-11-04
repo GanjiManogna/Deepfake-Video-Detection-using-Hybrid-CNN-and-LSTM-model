@@ -1,0 +1,14 @@
+torch
+torchvision
+opencv-python
+face_recognition
+numpy
+scikit-learn
+matplotlib
+tqdm
+scipy
+Pillow
+moviepy 
+fastapi
+uvicorn[standard]
+jinja2
